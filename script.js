@@ -413,14 +413,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ===== 12. CONTACT FORM HANDLING ===== */
+  /* ===== 12. CONTACT FORM HANDLING (DIRECT GMAIL SUBMISSION) ===== */
   const contactForm = document.getElementById('contactForm');
+  const submitMsgBtn = document.getElementById('submitMsgBtn');
+  const submitMsgText = document.getElementById('submitMsgText');
+
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('name').value;
-      showToast(`Thank you, ${name}! Your message has been sent successfully.`);
-      contactForm.reset();
+
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const subjectInput = document.getElementById('subject');
+      const messageInput = document.getElementById('message');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const subject = (subjectInput && subjectInput.value.trim()) ? subjectInput.value.trim() : 'New Portfolio Project Inquiry';
+      const message = messageInput ? messageInput.value.trim() : '';
+
+      if (!name || !email || !message) {
+        showToast("Please fill in your name, email, and message.");
+        return;
+      }
+
+      // UI Loading state
+      if (submitMsgBtn) submitMsgBtn.disabled = true;
+      if (submitMsgText) submitMsgText.textContent = "Sending to Gmail...";
+
+      try {
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("_subject", `[SWIVEX Portfolio] ${subject}`);
+        formData.append("message", message);
+        formData.append("_captcha", "false");
+        formData.append("_template", "table");
+
+        const response = await fetch("https://formsubmit.co/ajax/ogbonnagodswill382@gmail.com", {
+          method: "POST",
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          showToast(`Thank you, ${name}! Your message was sent directly to God'swill's Gmail inbox 📧`);
+          contactForm.reset();
+        } else {
+          throw new Error("Form submission response failed.");
+        }
+      } catch (err) {
+        console.warn("Direct submission API encounter, triggering mailto fallback:", err);
+        const mailtoUrl = `mailto:ogbonnagodswill382@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+        window.location.href = mailtoUrl;
+        showToast(`Opening email app to send message to ogbonnagodswill382@gmail.com! 📧`);
+        contactForm.reset();
+      } finally {
+        if (submitMsgBtn) submitMsgBtn.disabled = false;
+        if (submitMsgText) submitMsgText.textContent = "Send Message to Gmail";
+      }
     });
   }
 
