@@ -1,347 +1,944 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swivex</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="shortcut icon" href="./Images/ChatGPT Image Mar 23, 2026, 04_42_45 AM.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Swivex — God'swill Ogbonna | Software Developer & UI Specialist</title>
+  <meta name="description" content="Portfolio of God'swill Ogbonna (Swivex) - Software Developer crafting beautiful digital experiences, modern web applications, and responsive UI/UX.">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./Images/swivex-logo.png" type="image/x-icon">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Main & Responsive Stylesheets -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./responsive.css">
 </head>
 <body>
-    <!-- Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
 
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- ===== NAVBAR ===== -->
-    <header class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <img src="Images/ChatGPT Image Mar 23, 2026, 04_42_45 AM.png" alt="" width="50px" height="50px">
+  <!-- ===== PRELOADER LOADING SCREEN ===== -->
+  <div class="preloader" id="preloader">
+    <div class="loader-content">
+      <div class="loader-logo-wrap">
+        <img src="Images/swivex-logo.png" alt="Swivex Logo" class="loader-logo-img">
+        <div class="loader-brand">SWIVEX<span class="logo-dot">.</span></div>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-bar-fill" id="loaderBarFill"></div>
+      </div>
+      <div class="loader-status">
+        <span class="loader-text" id="loaderText">Initializing Experience...</span>
+        <span class="loader-percent" id="loaderPercent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Glowing Custom Pointer Following Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-outline" id="cursorOutline"></div>
+
+  <!-- Ambient Animated Background Mesh -->
+  <div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo-link">
+        <div class="logo-wrapper">
+          <img src="Images/swivex-logo.png" alt="Swivex Logo" class="logo-img">
+          <span class="logo-text">SWIVEX<span class="logo-dot">.</span></span>
+        </div>
+      </a>
+
+      <!-- Status Indicator Badge -->
+      <div class="status-pill d-none-mobile">
+        <span class="status-dot"></span>
+        <span class="status-text">Available for Hire</span>
+      </div>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="mobile-menu-header">
+          <div class="logo-wrapper">
+            <img src="Images/swivex-logo.png" alt="Swivex Logo" class="logo-img">
+            <span class="logo-text">SWIVEX<span class="logo-dot">.</span></span>
+          </div>
+          <div class="mobile-menu-actions">
+            <button class="theme-toggle-btn mobile-theme-btn" id="mobileThemeToggleBtn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+              <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+          </div>
         </div>
 
-        <nav class="nav-links" id="navLinks">
-          <a href="#home">
-            <span>Home</span>
-          </a>
-          <a href="#about">
-            <span>About</span>
-          </a>
-          <a href="#service">
-            <span>Service</span>
-          </a>
-          <a href="#projects">
-            <span>Projects</span>
-          </a>
-          <a href="#contact">
-            <span>Contact</span>
-          </a>
-        </nav>
+        <div class="mobile-menu-body">
+          <a href="#home" class="nav-item active"><span class="nav-label">Home</span></a>
+          <a href="#about" class="nav-item"><span class="nav-label">About</span></a>
+          <a href="#service" class="nav-item"><span class="nav-label">Services</span></a>
+          <a href="#projects" class="nav-item"><span class="nav-label">Projects</span></a>
+          <a href="#testimonials" class="nav-item"><span class="nav-label">Reviews</span></a>
+          <a href="#faq" class="nav-item"><span class="nav-label">FAQ</span></a>
+          <a href="#contact" class="nav-item"><span class="nav-label">Contact</span></a>
+        </div>
 
-        <div class="hamburger" id="hamburger">
+        <div class="mobile-menu-footer">
+          <a href="#contact" class="btn btn-primary btn-block mobile-cta">Let's Talk</a>
+          <div class="mobile-socials">
+            <a href="mailto:ogbonnagodswill382@gmail.com" class="social-pill"><img src="Images/icons8-email-30.png" alt="Email"></a>
+            <a href="https://twitter.com/Godswil10228868" target="_blank" class="social-pill"><img src="Images/icons8-x-logo-30.png" alt="Twitter"></a>
+            <a href="https://t.me/godswill_10" target="_blank" class="social-pill"><img src="Images/icons8-telegram-logo-50.png" alt="Telegram"></a>
+            <a href="https://linkedin.com/in/godswill-ogbonna-79b1b120a" target="_blank" class="social-pill"><img src="Images/icons8-linkedin-30.png" alt="LinkedIn"></a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+          <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <button class="cmd-btn" id="cmdBtn" title="Command Palette (Ctrl + K)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span class="cmd-key">⌘K</span>
+        </button>
+
+        <a href="#contact" class="btn btn-primary btn-sm nav-cta">Let's Talk</a>
+
+        <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="home">
+  <!-- ===== MAIN CONTENT CONTAINER ===== -->
+  <main class="app-main">
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero section" id="home">
       <div class="hero-container">
-        <div class="hero-text">
-          <h1>Hi, I'm God'swill Ogbonna</h1>
-          <p class="desc">
-            A Software Developer crafting beautiful digital experiences.
+        <div class="hero-content">
+          <div class="hero-badge fade-in-up">
+            <span class="sparkle">✨</span> Software Developer & Web Specialist
+          </div>
+          
+          <h1 class="hero-title fade-in-up">
+            Hi, I'm <span class="gradient-text">God'swill Ogbonna</span>
+            <div class="typing-container">
+              Crafting <span class="typing-text" id="typingText"></span><span class="cursor-blink">|</span>
+            </div>
+          </h1>
+
+          <p class="hero-desc fade-in-up">
+            Architecting high-performance digital experiences, modern web applications, and pixel-perfect interfaces with clean code and cutting-edge design aesthetics.
+          </p>
+
+          <div class="hero-cta-group fade-in-up">
+            <a href="#projects" class="btn btn-primary">
+              <span>Explore Projects</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#contact" class="btn btn-glass">
+              <span>Get In Touch</span>
+            </a>
+            <button class="btn btn-icon-only copy-email-btn" id="quickCopyEmailBtn" title="Copy Email Address">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+
+          <!-- Hero Metrics Counter Stats -->
+          <div class="hero-stats fade-in-up">
+            <div class="stat-card">
+              <span class="stat-number" data-target="4">4+</span>
+              <span class="stat-label">Shipped Apps</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="9">9+</span>
+              <span class="stat-label">Tech Tools</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Completion Rate</span>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-image">
-          <img src="Images/WhatsApp Image 2026-04-07 at 4.22.58 AM.jpeg" alt="Profile Image" />
+        <!-- Hero Avatar Card -->
+        <div class="hero-visual fade-in-up">
+          <div class="avatar-card tilt-card">
+            <div class="avatar-glow"></div>
+            <div class="avatar-image-frame">
+              <img src="Images/swivex-img.jpeg" alt="God'swill Ogbonna" class="avatar-img" onerror="this.src='Images/WhatsApp Image 2026-04-07 at 4.22.58 AM.jpeg'">
+            </div>
+            <!-- Floating Tech Badges around avatar -->
+            <div class="floating-badge badge-react">
+              <img src="Images/react.png" alt="React"> React
+            </div>
+            <div class="floating-badge badge-js">
+              <img src="Images/javascript.png" alt="JS"> JS
+            </div>
+            <div class="floating-badge badge-tail">
+              <img src="Images/tailwind-css.png" alt="Tailwind"> Tailwind
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <script src="script.js"></script>
-    <!-- end of hero -->
 
-    <!-- About me section  -->
-     <div id="about" class="about section">
-        <div class="text">
-            <h2 class="text-1 fade-in-up"> Little About Me</h2>
-            <hr class="line-1 fade-in-up">
-            <p class="text-2 fade-in-up">Hi, i'm Godswill ogbonna, a creative Web Designer who loves  building clean, responsive, and modern websites. <br>I focus on creating digital experiences that are bouth visually appealing and easy to use. <br>I work with technologies such as HTML,CSS, JavaScript,  and modern design practices to create webistes that help  businesses, <br>brands, and individuals build a strong online presence. <br>And the CEO of Swivex. </p>
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about-section section" id="about">
+      <div class="section-container">
+        
+        <div class="section-header fade-in-up">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Driven by Creativity & Clean Engineering</h2>
+          <div class="section-line"></div>
         </div>
-        <!-- skills / expertise cloud (animated) -->
-    <div class="skills">
-      <h2 class="section-heading">⚡ Tech Stack</h2>
-      <div class="skill-cloud">
-        <div class="skill-item">
-    <img src="Images/react.png" alt="">
-    <span>React </span>
-  </div>
-        <div class="skill-item">
-    <img src="Images/node-js.png" alt="">
-    <span>Next.js</span>
-  </div>
-        <div class="skill-item">
-    <img src="Images/tailwind-css.png" alt="">
-    <span>Tailwind</span>
-  </div>
-        <div class="skill-item">
-    <img src="Images/python.png" alt="">
-    <span>Python</span>
-  </div>
-        <div class="skill-item">
-    <img src="Images/bootstrap (2).png" alt="">
-    <span>Bootstrap</span>
-  </div>
-        <div class="skill-item">
-    <img src="Images/javascript.png" alt="">
-    <span>JavaScript</span>
-  </div>
-        <div class="skill-item">
-    <img src="Images/django.png" alt="">
-    <span>Django</span>
-  </div>
-   <div class="skill-item">
-    <img src="Images/html.png" alt="">
-    <span>HTML</span>
-  </div>
-   <div class="skill-item">
-    <img src="Images/css.png" alt="">
-    <span>CSS</span>
-    </div>
-      </div>
-     </div>
-     <!-- end of about me  -->
 
-    <!-- service section -->
-      <div id="service" class="service section">
-
-        <div class="ser-tex">
-            <h2 class="text-3 fade-in-up">I Do Amazing Things For Clients</h2>
-             <hr class="line fade-in-up">
-        </div>
-        <div class="service-cards">
-        <div class="card">
-          <img src="Images/paint-palette.png" alt="" width="30px" height="30px">
-            <h3>Branding</h3>
-            <p>
-                I build strong visual identities that help brands stand out
-                with clarity, purpose, and elegance.
+        <div class="about-grid">
+          <!-- Bio Glass Card -->
+          <div class="bio-card glass-panel tilt-card fade-in-up">
+            <div class="bio-badge">
+              <span class="badge-icon">💼</span> CEO & Founder at <span class="brand-name">SWIVEX</span>
+            </div>
+            <p class="bio-text">
+              Hi! I'm <strong>God'swill Ogbonna</strong>, a passionate Web Designer and Software Developer dedicated to building clean, responsive, and resilient digital products.
             </p>
+
+            <!-- Interactive Terminal Code Window -->
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="term-btn term-close"></span>
+                <span class="term-btn term-min"></span>
+                <span class="term-btn term-max"></span>
+                <span class="term-title">developer-profile.js</span>
+              </div>
+              <div class="terminal-body">
+                <pre><code><span class="code-keyword">const</span> <span class="code-var">swivexDev</span> = {
+  <span class="code-prop">name</span>: <span class="code-string">"God'swill Ogbonna"</span>,
+  <span class="code-prop">role</span>: <span class="code-string">"Full-Stack Web Developer"</span>,
+  <span class="code-prop">status</span>: <span class="code-string">"Ready for New Projects 🚀"</span>,
+  <span class="code-prop">stack</span>: [<span class="code-string">"React"</span>, <span class="code-string">"Next.js"</span>, <span class="code-string">"Tailwind"</span>, <span class="code-string">"Python"</span>]
+};</code></pre>
+                <button class="btn btn-sm btn-glass term-run-btn" id="runCodeBtn">
+                  <span>▶ Run Developer Code</span>
+                </button>
+                <div class="term-output" id="termOutput"></div>
+              </div>
+            </div>
+
+            <div class="bio-features">
+              <div class="feature-item">
+                <span class="check-icon">✓</span> Responsive Web Applications
+              </div>
+              <div class="feature-item">
+                <span class="check-icon">✓</span> Modern UI/UX Aesthetics
+              </div>
+              <div class="feature-item">
+                <span class="check-icon">✓</span> Pixel-Perfect Code Architecture
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Stack Matrix -->
+          <div class="tech-matrix-wrapper fade-in-up">
+            <div class="matrix-header">
+              <h3>⚡ Tech Stack & Expertise</h3>
+              <!-- Category Filter Tabs -->
+              <div class="tech-filters" id="techFilters">
+                <button class="tech-tab active" data-filter="all">All</button>
+                <button class="tech-tab" data-filter="frontend">Frontend</button>
+                <button class="tech-tab" data-filter="fullstack">Fullstack</button>
+                <button class="tech-tab" data-filter="styling">Styling</button>
+              </div>
+            </div>
+
+            <div class="skill-grid" id="skillGrid">
+              <div class="skill-item glass-card tilt-card" data-category="frontend fullstack">
+                <div class="skill-icon-wrap"><img src="Images/react.png" alt="React"></div>
+                <div class="skill-info">
+                  <span class="skill-name">React</span>
+                  <span class="skill-level">Advanced</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="fullstack frontend">
+                <div class="skill-icon-wrap"><img src="Images/node-js.png" alt="Next.js"></div>
+                <div class="skill-info">
+                  <span class="skill-name">Next.js</span>
+                  <span class="skill-level">Framework</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="frontend">
+                <div class="skill-icon-wrap"><img src="Images/javascript.png" alt="JavaScript"></div>
+                <div class="skill-info">
+                  <span class="skill-name">JavaScript</span>
+                  <span class="skill-level">ES6+ / Core</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="styling frontend">
+                <div class="skill-icon-wrap"><img src="Images/tailwind-css.png" alt="Tailwind"></div>
+                <div class="skill-info">
+                  <span class="skill-name">Tailwind</span>
+                  <span class="skill-level">Utility-First</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="fullstack">
+                <div class="skill-icon-wrap"><img src="Images/python.png" alt="Python"></div>
+                <div class="skill-info">
+                  <span class="skill-name">Python</span>
+                  <span class="skill-level">Backend Logic</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="fullstack">
+                <div class="skill-icon-wrap"><img src="Images/django.png" alt="Django"></div>
+                <div class="skill-info">
+                  <span class="skill-name">Django</span>
+                  <span class="skill-level">Web Framework</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="styling frontend">
+                <div class="skill-icon-wrap"><img src="Images/bootstrap (2).png" alt="Bootstrap"></div>
+                <div class="skill-info">
+                  <span class="skill-name">Bootstrap</span>
+                  <span class="skill-level">UI Library</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="frontend">
+                <div class="skill-icon-wrap"><img src="Images/html.png" alt="HTML5"></div>
+                <div class="skill-info">
+                  <span class="skill-name">HTML5</span>
+                  <span class="skill-level">Semantic Markup</span>
+                </div>
+              </div>
+
+              <div class="skill-item glass-card tilt-card" data-category="styling frontend">
+                <div class="skill-icon-wrap"><img src="Images/css.png" alt="CSS3"></div>
+                <div class="skill-info">
+                  <span class="skill-name">CSS3</span>
+                  <span class="skill-level">Animations & Flex/Grid</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="services-section section" id="service">
+      <div class="section-container">
+        
+        <div class="section-header fade-in-up">
+          <span class="section-tag">Services</span>
+          <h2 class="section-title">Solutions Built for Impact & Growth</h2>
+          <div class="section-line"></div>
         </div>
 
-        <div class="card">
-          <img src="Images/web-design.png" alt="" width="30px" height="30px">
-            <h3>UI/UX Design</h3>
-            <p>
-                I create intuitive and user-friendly digital experiences
-                that connect beautifully with users.
+        <div class="services-grid">
+          
+          <!-- Service Card 1 -->
+          <div class="service-card glass-panel tilt-card fade-in-up">
+            <div class="service-icon-box">
+              <img src="Images/paint-palette.png" alt="Branding">
+            </div>
+            <h3 class="service-title">Branding & Identity</h3>
+            <p class="service-desc">
+              I build strong, cohesive visual identities that establish credibility, capture audience attention, and convey clarity and elegance.
             </p>
+            <ul class="service-list">
+              <li>Visual Identity Systems</li>
+              <li>Brand Strategy & Logos</li>
+              <li>Design Guidelines</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="service-card glass-panel tilt-card fade-in-up accent-card">
+            <div class="service-badge">Popular</div>
+            <div class="service-icon-box">
+              <img src="Images/web-design.png" alt="UI/UX Design">
+            </div>
+            <h3 class="service-title">UI/UX Design</h3>
+            <p class="service-desc">
+              Designing user-centered interfaces with seamless navigation flows, clean layout hierarchies, and captivating visual styling.
+            </p>
+            <ul class="service-list">
+              <li>Wireframing & Prototyping</li>
+              <li>User Interface Design</li>
+              <li>Responsive Layout Systems</li>
+            </ul>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="service-card glass-panel tilt-card fade-in-up">
+            <div class="service-icon-box">
+              <img src="Images/website.png" alt="Web Development">
+            </div>
+            <h3 class="service-title">Web Development</h3>
+            <p class="service-desc">
+              Engineering modern, fast, and fully responsive web applications using clean HTML, CSS, JavaScript, React, and Python frameworks.
+            </p>
+            <ul class="service-list">
+              <li>Single-Page Applications</li>
+              <li>Custom Web Applications</li>
+              <li>Performance Optimization</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="projects-section section" id="projects">
+      <div class="section-container">
+
+        <div class="section-header fade-in-up">
+          <span class="section-tag">Portfolio Showcase</span>
+          <h2 class="section-title">Recent Featured Projects</h2>
+          <div class="section-line"></div>
         </div>
 
-        <div class="card">
-          <img src="Images/website.png" alt="">
-            <h3>Web Design</h3>
-            <p>
-                I design modern responsive websites that combine
-                aesthetics with seamless functionality.
-            </p>
+        <!-- Project Filter Buttons -->
+        <div class="project-filter-bar fade-in-up" id="projectFilters">
+          <button class="filter-pill active" data-filter="all">All Projects</button>
+          <button class="filter-pill" data-filter="react">React Apps</button>
+          <button class="filter-pill" data-filter="frontend">Landing Pages</button>
+          <button class="filter-pill" data-filter="clone">UI Clones</button>
         </div>
+
+        <!-- Project Cards Grid (Dynamic & Fluid - Add any number of project cards below) -->
+        <div class="projects-grid" id="projectsGrid">
+
+          <!-- 
+            ==========================================================================
+            HOW TO ADD A NEW PROJECT CARD IN THE FUTURE:
+            Copy & paste this template block inside #projectsGrid:
+
+            <div class="project-card glass-panel tilt-card fade-in-up" data-category="react frontend">
+              <div class="project-media">
+                <img src="Images/your-project-image.jpg" alt="Your Project Title">
+                <div class="project-overlay">
+                  <a href="https://your-live-demo-link.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                    <span>Launch Live</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  </a>
+                  <button class="btn btn-sm btn-glass quick-view-btn" 
+                    data-title="Your Project Title" 
+                    data-desc="Detailed description of your project..."
+                    data-tags="React,Tailwind,API"
+                    data-image="Images/your-project-image.jpg"
+                    data-link="https://your-live-demo-link.com">
+                    <span>Quick View</span>
+                  </button>
+                </div>
+                <span class="project-status-badge badge-done">100% Done</span>
+              </div>
+              <div class="project-body">
+                <div class="project-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Tailwind</span>
+                </div>
+                <h3 class="project-title">Your Project Title</h3>
+                <p class="project-desc">Short 1-line description of your project.</p>
+              </div>
+            </div>
+            ==========================================================================
+          -->
+
+          <!-- Project Card 1: GTCO Clone -->
+          <div class="project-card glass-panel tilt-card fade-in-up" data-category="clone frontend">
+            <div class="project-media">
+              <img src="./Images/POSTER DESIGN FOR GTCO - GT BANK.jpg" alt="GTCO Clone">
+              <div class="project-overlay">
+                <a href="https://gtco-clon.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                  <span>Launch Live</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <button class="btn btn-sm btn-glass quick-view-btn" 
+                  data-title="GTCO Banking Clone" 
+                  data-desc="High-fidelity banking platform clone with a responsive layout, clean navigation UI, and modern aesthetic. Engineered to emulate real-world fintech interaction flows."
+                  data-tags="HTML5,CSS3,Flexbox,Grid"
+                  data-image="./Images/POSTER DESIGN FOR GTCO - GT BANK.jpg"
+                  data-link="https://gtco-clon.vercel.app/">
+                  <span>Quick View</span>
+                </button>
+              </div>
+              <span class="project-status-badge badge-progress">80% Completed</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Fintech</span>
+              </div>
+              <h3 class="project-title">GTCO Banking Clone</h3>
+              <p class="project-desc">Banking UI clone with responsive layout, custom CSS grid structures, and modern interface.</p>
+            </div>
+          </div>
+
+          <!-- Project Card 2: Aura Studio -->
+          <div class="project-card glass-panel tilt-card fade-in-up" data-category="frontend">
+            <div class="project-media">
+              <img src="Images/ChatGPT Image Apr 16, 2026, 03_37_54 AM.png" alt="Aura Studio">
+              <div class="project-overlay">
+                <a href="https://studio-work-omega.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                  <span>Launch Live</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <button class="btn btn-sm btn-glass quick-view-btn" 
+                  data-title="Aura Studio" 
+                  data-desc="A high-end creative agency landing page featuring smooth visual scroll transitions, modern glassmorphism components, and dynamic responsive layouts."
+                  data-tags="HTML5,CSS3,JavaScript,Animations"
+                  data-image="Images/ChatGPT Image Apr 16, 2026, 03_37_54 AM.png"
+                  data-link="https://studio-work-omega.vercel.app/">
+                  <span>Quick View</span>
+                </button>
+              </div>
+              <span class="project-status-badge badge-done">100% Done</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <h3 class="project-title">Aura Studio</h3>
+              <p class="project-desc">Aura Studio landing page with responsive layout, micro-interactions, and visual elegance.</p>
+            </div>
+          </div>
+
+          <!-- Project Card 3: NovaTech Solutions -->
+          <div class="project-card glass-panel tilt-card fade-in-up" data-category="react">
+            <div class="project-media">
+              <img src="Images/Screenshot (5).png" alt="NovaTech Task Manager">
+              <div class="project-overlay">
+                <a href="https://task-list-delta-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                  <span>Launch Live</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <button class="btn btn-sm btn-glass quick-view-btn" 
+                  data-title="NovaTech Task Manager" 
+                  data-desc="Productivity web app built with React. Features task management, state handling, task filtering, interactive UI controls, and local storage state persistence."
+                  data-tags="React,JavaScript,State Management,CSS"
+                  data-image="Images/Screenshot (5).png"
+                  data-link="https://task-list-delta-six.vercel.app/">
+                  <span>Quick View</span>
+                </button>
+              </div>
+              <span class="project-status-badge badge-done">Live App</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">React</span>
+                <span class="tag">Productivity</span>
+              </div>
+              <h3 class="project-title">NovaTech Task Manager</h3>
+              <p class="project-desc">Task management productivity application built with React and interactive state components.</p>
+            </div>
+          </div>
+
+          <!-- Project Card 4: MetaVault -->
+          <div class="project-card glass-panel tilt-card fade-in-up" data-category="react">
+            <div class="project-media">
+              <img src="Images/crypto-1.jpg" alt="MetaVault Crypto Finance">
+              <div class="project-overlay">
+                <a href="https://meta-vault-rho.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                  <span>Launch Live</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <button class="btn btn-sm btn-glass quick-view-btn" 
+                  data-title="MetaVault Crypto Finance" 
+                  data-desc="Smart crypto finance platform landing app built with React and Tailwind CSS. Features dark futuristic aesthetic, clean card layouts, and crypto assets showcase."
+                  data-tags="React,Tailwind CSS,JavaScript,Web3 UI"
+                  data-image="Images/crypto-1.jpg"
+                  data-link="https://meta-vault-rho.vercel.app/">
+                  <span>Quick View</span>
+                </button>
+              </div>
+              <span class="project-status-badge badge-done">100% Done</span>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Tailwind</span>
+                <span class="tag">Fintech</span>
+              </div>
+              <h3 class="project-title">MetaVault Crypto</h3>
+              <p class="project-desc">Smart Web3 finance application featuring a dark aesthetic and Tailwind CSS layouts.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS SECTION ===== -->
+    <section class="testimonials-section section" id="testimonials">
+      <div class="section-container">
+        
+        <div class="section-header fade-in-up">
+          <span class="section-tag">Client Reviews</span>
+          <h2 class="section-title">What Clients & Collaborators Say</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card glass-panel tilt-card fade-in-up">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-quote">
+              "God'swill transformed our concept into a stunning web application. His speed, code clarity, and eye for modern aesthetics are unmatched!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">A</div>
+              <div class="author-info">
+                <h4>Alex Rivera</h4>
+                <span>Product Manager</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card glass-panel tilt-card fade-in-up">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-quote">
+              "Working with <span class="brand-name">SWIVEX</span> was smooth from day one. The responsive performance and sleek UI design exceeded our expectations!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">S</div>
+              <div class="author-info">
+                <h4>Sarah Chen</h4>
+                <span>Creative Director</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card glass-panel tilt-card fade-in-up">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-quote">
+              "Pixel-perfect implementation! Every micro-interaction and animation feels premium and responsive. Highly recommended for web development."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">M</div>
+              <div class="author-info">
+                <h4>Michael Vance</h4>
+                <span>Tech Lead</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== FAQ ACCORDION SECTION ===== -->
+    <section class="faq-section section" id="faq">
+      <div class="section-container">
+
+        <div class="section-header fade-in-up">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="faq-wrapper fade-in-up">
+          
+          <div class="faq-item glass-panel">
+            <div class="faq-question">
+              <h3>What services does Swivex provide?</h3>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Swivex specializes in custom web application development, responsive UI/UX design, single-page React applications, brand identity design, and web performance optimization.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel">
+            <div class="faq-question">
+              <h3>What technologies do you use for web projects?</h3>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>I primarily work with HTML5, CSS3, JavaScript (ES6+), React, Next.js, Tailwind CSS, Bootstrap, Python, and Django, ensuring clean code and optimal speed.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel">
+            <div class="faq-question">
+              <h3>Are you available for freelance projects or full-time roles?</h3>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! I am available for contract projects, freelance engagements, and full-time remote developer opportunities worldwide.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel">
+            <div class="faq-question">
+              <h3>How can I get started on a project with you?</h3>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Simply scroll down to the Contact section, fill out the quick inquiry form, or message me directly on WhatsApp at <strong>+234 813 462 5302</strong> for instant response!</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact-section section" id="contact">
+      <div class="section-container">
+
+        <div class="section-header fade-in-up">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let's Build Something Great Together</h2>
+          <div class="section-line"></div>
+          <p class="section-subtitle">
+            Whether you have a project in mind, need a developer, or want to collaborate, feel free to reach out anytime!
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Contact Options Hub -->
+          <div class="contact-cards-column fade-in-up">
+            
+            <!-- WhatsApp Option -->
+            <div class="contact-card glass-panel tilt-card">
+              <div class="contact-card-icon whatsapp-bg">
+                <img src="./Images/logo_whatsapp_icon.svg" alt="WhatsApp">
+              </div>
+              <div class="contact-card-info">
+                <h3>WhatsApp Chat</h3>
+                <p>Instant Direct Messaging</p>
+                <span class="contact-val">+234 813 462 5302</span>
+              </div>
+              <div class="contact-card-actions">
+                <a href="https://wa.me/2348134625302" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Open Chat</a>
+                <button class="btn btn-sm btn-icon-only copy-val-btn" data-copy="+2348134625302" title="Copy Number">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Phone Call Option -->
+            <div class="contact-card glass-panel tilt-card">
+              <div class="contact-card-icon phone-bg">
+                <img src="./Images/icons8-call-30.png" alt="Call">
+              </div>
+              <div class="contact-card-info">
+                <h3>Direct Phone Line</h3>
+                <p>Available for calls</p>
+                <span class="contact-val">+234 811 859 9990</span>
+              </div>
+              <div class="contact-card-actions">
+                <a href="tel:+2348118599990" class="btn btn-sm btn-glass">Call Now</a>
+                <button class="btn btn-sm btn-icon-only copy-val-btn" data-copy="+2348118599990" title="Copy Phone Number">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Email Option -->
+            <div class="contact-card glass-panel tilt-card">
+              <div class="contact-card-icon email-bg">
+                <img src="Images/icons8-email-30.png" alt="Email">
+              </div>
+              <div class="contact-card-info">
+                <h3>Email Address</h3>
+                <p>Send a direct message</p>
+                <span class="contact-val text-truncate">ogbonnagodswill382@gmail.com</span>
+              </div>
+              <div class="contact-card-actions">
+                <a href="mailto:ogbonnagodswill382@gmail.com" class="btn btn-sm btn-glass">Send Email</a>
+                <button class="btn btn-sm btn-icon-only copy-val-btn" data-copy="ogbonnagodswill382@gmail.com" title="Copy Email">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Quick Interactive Form -->
+          <div class="contact-form-column fade-in-up">
+            <form class="contact-form glass-panel tilt-card" id="contactForm">
+              <h3 class="form-title">Send a Quick Message</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                  <label for="email">Your Email</label>
+                  <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" placeholder="Project Inquiry / Collaboration">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4" required placeholder="Tell me about your project or inquiry..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER SECTION ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="#home" class="logo-link">
+            <span class="logo-text">SWIVEX<span class="logo-dot">.</span></span>
+          </a>
+          <p class="footer-tagline">
+            Building modern web experiences and software applications with creativity, precision, and clean design.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#service">Services</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#testimonials">Reviews</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#service">UI/UX Design</a></li>
+              <li><a href="#service">Web Development</a></li>
+              <li><a href="#service">Branding</a></li>
+              <li><a href="#service">React Apps</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <div class="social-pills">
+              <a href="mailto:ogbonnagodswill382@gmail.com" title="Email" class="social-pill">
+                <img src="Images/icons8-email-30.png" alt="Email">
+              </a>
+              <a href="https://twitter.com/Godswil10228868" target="_blank" rel="noopener noreferrer" title="Twitter" class="social-pill">
+                <img src="Images/icons8-x-logo-30.png" alt="Twitter">
+              </a>
+              <a href="https://t.me/godswill_10" target="_blank" rel="noopener noreferrer" title="Telegram" class="social-pill">
+                <img src="Images/icons8-telegram-logo-50.png" alt="Telegram">
+              </a>
+              <a href="https://linkedin.com/in/godswill-ogbonna-79b1b120a" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-pill">
+                <img src="Images/icons8-linkedin-30.png" alt="LinkedIn">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-status">
+          <span class="sys-dot"></span> All Systems Operational
+        </div>
+        <p>© 2026 <span class="brand-name">SWIVEX</span> by God'swill Ogbonna. All rights reserved.</p>
       </div>
     </div>
-    <!-- end of service section -->
+  </footer>
 
-    <!-- PORTFOLIO section -->
-     <div class="all-por">
-       <div id="projects" class="Portfolio section">
-        <div class="thr-tex">
-            <h2 class="text-5 fade-in-up">
-                Recent
-                <span>Projects</span>
-            </h2>
-            <hr  class="line-2 fade-in-up">
+  <!-- ===== PROJECT QUICK VIEW MODAL ===== -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-card glass-panel">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      <div class="modal-body">
+        <div class="modal-img-frame">
+          <img src="" alt="Project Image" id="modalImg">
         </div>
-       </div>
-      <!--  CLONE -->
-     <div class="all-card">   
-     <div class="project-card">
-      <div class="project-image">
-       <img src="./Images/POSTER DESIGN FOR GTCO - GT BANK.jpg" alt="GTCO Clone">
-       <div class="project-hover">
-        <a href="https://gtco-clon.vercel.app/" class="view-btn">View Project</a>
-      </div>
-     </div>
-     <div class="project-content">
-        <h3>GTCO Clone</h3>
-        <p>Banking UI clone with responsive layout and clean user interface.About 80% Done.</p>
-        <div class="project-tags">
-            <span>HTML</span>
-            <span>CSS</span>
-       </div>
-      </div>
-     </div>
-     <div class="project-card">
-      <div class="project-image">
-       <img src="Images/ChatGPT Image Apr 16, 2026, 03_37_54 AM.png" alt="Aura Studio">
-       <div class="project-hover">
-        <a href="https://studio-work-omega.vercel.app/" class="view-btn">View Project</a>
-      </div>
-     </div>
-     <div class="project-content">
-        <h3>Aura Studio</h3>
-        <p>Aura Studio landing page  with fully responsive layout and clean user interface,100% Done.</p>
-        <div class="project-tags">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-       </div>
-       </div>
-       </div>
-            <div class="project-card">
-      <div class="project-image">
-       <img src="Images/Screenshot (5).png" alt="Task Manager" height="50px" width="50px">
-       <div class="project-hover">
-        <a href="https://task-list-delta-six.vercel.app/" class="view-btn">View Project</a>
-      </div>
-     </div>
-     <div class="project-content">
-        <h3>NovaTech Solutions</h3>
-        <p>This is a Task Manager application built with React.</p>
-        <div class="project-tags">
-            <span>JavaScript</span>
-            <span>React</span>
-       </div>
-       </div>
-       </div>  
-       <div class="project-card">
-      <div class="project-image">
-       <img src="Images/favicon.png" alt="blocknova" height="50px" width="50px">
-       <div class="project-hover">
-        <a href="https://block-nova-sh3a.vercel.app/" class="view-btn">View Project</a>
-      </div>
-     </div>
-     <div class="project-content">
-        <h3>BlockNova</h3>
-        <p>Smart finance for smart people. Fully responsive layout and clean user interface,100% Done.</p>
-        <div class="project-tags">
-            <span>JavaScript</span>
-            <span>React</span>
-            <span>Tailwind</span>
-       </div>
-       </div>
-       </div>
-
-
-
-
-      </div>
-    </div>
-    <!-- END OF portfolio -->
-
-<!-- CONTACT SECTION -->
-<section class="contact-section" id="contact">
-
-    <h2>Get In Touch</h2>
-
-    <hr class="line-3">
-
-    <p>
-        Feel free to reach out for collaborations, projects, or just to connect.
-    </p>
-
-    <div class="contact-container">
-
-        <div class="contact-item">
-            <img class="contact-icon" src="./Images/logo_whatsapp_icon.svg" alt="WhatsApp">
-
-            <h3>WhatsApp</h3>
-
-            <a href="https://wa.me/2348134625302" target="_blank">
-                +234 813 462 5302
+        <div class="modal-content">
+          <h3 id="modalTitle">Project Title</h3>
+          <div class="modal-tags" id="modalTags"></div>
+          <p id="modalDesc">Project description goes here...</p>
+          <div class="modal-actions">
+            <a href="#" id="modalLaunchBtn" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <span>Launch Live Site</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
             </a>
+          </div>
         </div>
-
-        <div class="contact-item">
-
-            <img class="contact-icon" src="./Images/icons8-call-30.png" alt="Call">
-
-            <h3>Call Line</h3>
-
-            <span class="phone-number">
-                +234 811 859 9990
-            </span>
-
-        </div>
-
+      </div>
     </div>
-</section>
-<!-- end of contact section -->
+  </div>
 
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    <div class="footer-company">
-        <h3>SWIVEX</h3>
-        <p>Building modern web experiences with creativity and clean design.</p>
+  <!-- ===== COMMAND PALETTE MODAL (Ctrl + K) ===== -->
+  <div class="cmd-backdrop" id="cmdModal">
+    <div class="cmd-card glass-panel">
+      <div class="cmd-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="cmdInput" placeholder="Type a command or jump to section..." autocomplete="off">
+        <span class="cmd-esc">ESC</span>
+      </div>
+      <div class="cmd-results" id="cmdResults">
+        <div class="cmd-group-title">Navigation</div>
+        <a href="#home" class="cmd-item" data-action="nav"><span class="cmd-icon">🏠</span> Home Section</a>
+        <a href="#about" class="cmd-item" data-action="nav"><span class="cmd-icon">👤</span> About & Tech Stack</a>
+        <a href="#service" class="cmd-item" data-action="nav"><span class="cmd-icon">🛠️</span> Services & Capabilities</a>
+        <a href="#projects" class="cmd-item" data-action="nav"><span class="cmd-icon">💼</span> Projects Gallery</a>
+        <a href="#testimonials" class="cmd-item" data-action="nav"><span class="cmd-icon">⭐</span> Client Reviews</a>
+        <a href="#faq" class="cmd-item" data-action="nav"><span class="cmd-icon">❓</span> FAQ Section</a>
+        <a href="#contact" class="cmd-item" data-action="nav"><span class="cmd-icon">💬</span> Contact & Message</a>
+        
+        <div class="cmd-group-title">Actions</div>
+        <div class="cmd-item" data-action="copy-email"><span class="cmd-icon">📋</span> Copy Email (ogbonnagodswill382@gmail.com)</div>
+        <div class="cmd-item" data-action="copy-phone"><span class="cmd-icon">📞</span> Copy WhatsApp (+2348134625302)</div>
+        <a href="https://wa.me/2348134625302" target="_blank" class="cmd-item"><span class="cmd-icon">💬</span> Open WhatsApp Chat</a>
+      </div>
     </div>
+  </div>
 
-    <div class="social-links">
+  <!-- ===== TOAST NOTIFICATION CONTAINER ===== -->
+  <div class="toast-container" id="toastContainer"></div>
 
-        <a href="mailto:ogbonnagodswill382@gmail.com" aria-label="Email">
-            <img src="Images/icons8-email-30.png" alt="Email">
-        </a>
-
-        <a href="https://twitter.com/Godswil10228868" target="_blank" aria-label="Twitter">
-            <img src="Images/icons8-x-logo-30.png" alt="Twitter">
-        </a>
-
-        <a href="https://t.me/godswill_10" target="_blank" aria-label="Telegram">
-            <img src="Images/icons8-telegram-logo-50.png" alt="Telegram">
-        </a>
-
-        <a href="https://linkedin.com/in/godswill-ogbonna-79b1b120a" target="_blank" aria-label="LinkedIn">
-            <img src="Images/icons8-linkedin-30.png" alt="LinkedIn">
-        </a>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>© 2026 SWIVEX. All Rights Reserved.</p>
-    </div>
-
-</footer>
-
-<!-- END FOOTER -->
-    
- <script>
- const sections = document.querySelectorAll('.section');
-
- const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            const children = entry.target.querySelectorAll('.fade-in-up');
-            children.forEach((child, index) => {
-                setTimeout(() => {
-                    child.classList.add('show');
-                }, index * 200);
-            });
-        }
-    });
- }, {
-    threshold: 0.1
- });
-
- sections.forEach(section => {
-    observer.observe(section);
- });
- </script>
-
+  <!-- Script File -->
+  <script src="script.js"></script>
 </body>
 </html>

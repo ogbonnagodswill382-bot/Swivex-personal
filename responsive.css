@@ -1,0 +1,776 @@
+/* ==========================================================================
+   SWIVEX — DEDICATED RESPONSIVE & MOBILE DRAWER STYLESHEET
+   100% Fully Responsive, Centered Layout & Mobile Drawer for All Devices
+   ========================================================================== */
+
+/* ===== 1. GLOBAL OVERFLOW PREVENTER & FLUID LAYOUT ===== */
+*, *::before, *::after {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure background mesh blobs never cause horizontal side-shift */
+.bg-mesh {
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  pointer-events: none;
+}
+
+.blob {
+  max-width: 100vw;
+}
+
+/* Section Containers Centering */
+.section-container,
+.nav-container,
+.hero-container,
+.footer-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Fluid Typography */
+.hero-title {
+  font-size: clamp(2rem, 5vw + 1rem, 3.75rem) !important;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw + 0.8rem, 2.5rem) !important;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ===== 2. ULTRA LARGE & 4K DISPLAYS (> 1440px) ===== */
+@media (min-width: 1441px) {
+  .section-container,
+  .nav-container,
+  .hero-container,
+  .footer-container {
+    max-width: 1400px;
+  }
+
+  .hero-desc {
+    font-size: 1.3rem;
+  }
+
+  .avatar-card {
+    width: 380px;
+    height: 460px;
+  }
+}
+
+/* ===== 3. DESKTOPS & LAPTOPS (1025px - 1440px) ===== */
+@media (max-width: 1200px) {
+  .hero-container {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+  }
+
+  .services-grid,
+  .projects-grid,
+  .testimonials-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* ===== 4. TABLETS LANDSCAPE (769px - 1024px) ===== */
+@media (max-width: 1024px) {
+  .app-main {
+    padding-top: 4.5rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 3rem 0 4rem;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-desc {
+    margin: 0 auto 2rem;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* iPad & Tablet Footer Alignment */
+  .footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+    text-align: center !important;
+  }
+
+  .footer-brand {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer-tagline {
+    margin: 0 auto !important;
+    max-width: 480px !important;
+    text-align: center !important;
+  }
+
+  .footer-links-group {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+
+  .social-pills {
+    justify-content: center !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.85rem !important;
+  }
+}
+
+/* ===== 5. FULLSCREEN GLASS MOBILE & TABLET MENU (<= 1024px for iPads & Tablets) ===== */
+@media (max-width: 1024px) {
+  .d-none-mobile {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  /* Fullscreen Glass Mobile Drawer */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(9, 13, 22, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 2.5rem;
+    border: none;
+    border-radius: 0;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-menu-close {
+    font-size: 2.2rem;
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+
+  .mobile-menu-close:hover {
+    color: var(--accent-primary);
+  }
+
+  .mobile-menu-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .mobile-menu-body .nav-item {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--radius-md);
+  }
+
+  .mobile-menu-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .mobile-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Centered Hero Section for Mobile */
+  .hero-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  /* Prevent Floating Badges from creating horizontal side shift */
+  .floating-badge {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .badge-react { top: 3%; left: 0%; }
+  .badge-js { bottom: 8%; left: 0%; }
+  .badge-tail { top: 15%; right: 0%; }
+
+  .avatar-card {
+    width: 100%;
+    max-width: 290px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin: 0 auto;
+  }
+
+  /* Grids & Cards Centering */
+  .services-grid,
+  .testimonials-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .typing-container {
+    font-size: 1.35rem;
+    min-height: 2.2rem;
+    text-align: center;
+  }
+
+  /* Skill Grid Matrix */
+  .matrix-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .tech-filters {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .tech-tab {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .skill-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.75rem;
+  }
+
+  /* Project Filters */
+  .project-filter-bar {
+    gap: 0.35rem;
+    justify-content: center;
+  }
+
+  .filter-pill {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  /* Form & Contact */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    padding: 1.25rem 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-card-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-card-actions .btn {
+    width: 100%;
+  }
+
+  .contact-val {
+    word-break: break-all;
+  }
+
+  /* Footer Links */
+  .footer-links-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+/* ===== 6. MOBILE PHONES (381px - 576px) ===== */
+@media (max-width: 576px) {
+  .section {
+    padding: 3.25rem 0;
+  }
+
+  .section-container,
+  .nav-container,
+  .hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Hero Section */
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .copy-email-btn {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.85rem 0.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 1.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .avatar-card {
+    max-width: 250px;
+  }
+
+  /* About Me Section on Mobile */
+  .bio-card {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-lg);
+  }
+
+  .bio-badge {
+    font-size: 0.78rem !important;
+    padding: 0.35rem 0.75rem !important;
+    margin: 0 auto 0.5rem !important;
+    text-align: center !important;
+  }
+
+  .bio-text {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    text-align: center !important;
+  }
+
+  /* Terminal Code Window on Mobile */
+  .terminal-window {
+    font-size: 0.75rem !important;
+    margin-top: 0.75rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .terminal-body {
+    padding: 0.75rem !important;
+  }
+
+  .terminal-body pre {
+    font-size: 0.72rem !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+
+  .term-run-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 0.75rem !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  .bio-features {
+    padding-top: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .feature-item {
+    font-size: 0.85rem !important;
+  }
+
+  /* Tech Matrix & Skill Cards on Mobile */
+  .matrix-header {
+    gap: 0.75rem !important;
+    text-align: center !important;
+  }
+
+  .matrix-header h3 {
+    font-size: 1.15rem !important;
+  }
+
+  .tech-filters {
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 0.25rem !important;
+  }
+
+  .tech-tab {
+    padding: 0.3rem 0.65rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  .skill-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.6rem !important;
+  }
+
+  .skill-item {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 0.85rem 0.4rem !important;
+    gap: 0.4rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .skill-icon-wrap {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    margin: 0 auto !important;
+    border-radius: 10px !important;
+  }
+
+  .skill-icon-wrap img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .skill-info {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .skill-name {
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+
+  .skill-level {
+    font-size: 0.65rem !important;
+    opacity: 0.8 !important;
+    white-space: normal !important;
+  }
+
+  /* Projects Overlay for Touch Devices */
+  .project-overlay {
+    opacity: 1 !important;
+    background: rgba(9, 13, 22, 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  .project-media {
+    height: 190px;
+  }
+
+  .project-body {
+    padding: 1.25rem 1rem;
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Terminal Code Window */
+  .terminal-window {
+    font-size: 0.75rem;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+  }
+
+  /* Contact & Form */
+  .contact-form {
+    padding: 1.25rem 1rem;
+  }
+
+  .form-title {
+    font-size: 1.2rem;
+  }
+
+  /* Footer on Mobile Phones */
+  .footer-main {
+    gap: 2.5rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem !important;
+    max-width: 320px !important;
+  }
+
+  .footer-links-group {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.75rem 1rem !important;
+    text-align: center !important;
+  }
+
+  .footer-links-group .footer-col:last-child {
+    grid-column: 1 / -1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .social-pills {
+    justify-content: center !important;
+    gap: 0.85rem !important;
+  }
+
+  .footer-bottom {
+    padding-top: 1.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Modals & Overlays */
+  .modal-card {
+    max-width: calc(100vw - 1.5rem);
+    max-height: 85vh;
+    margin: 0.5rem;
+    border-radius: var(--radius-md);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-img-frame {
+    height: 180px;
+  }
+
+  .modal-content {
+    padding: 1.25rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .cmd-card {
+    max-width: calc(100vw - 1.5rem);
+    max-height: 85vh;
+    margin: 0.5rem;
+  }
+
+  /* Toast Notifications */
+  .toast-container {
+    bottom: 1rem;
+    right: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .toast {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ===== 7. ULTRA-SMALL PHONES & FOLDABLES (< 380px) ===== */
+@media (max-width: 380px) {
+  .logo-text {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .logo-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cmd-btn {
+    padding: 0.35rem;
+  }
+
+  .cmd-key {
+    display: none;
+  }
+
+  .avatar-card {
+    max-width: 220px;
+  }
+
+  .floating-badge {
+    display: none;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-tab,
+  .filter-pill {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .contact-card {
+    padding: 0.85rem;
+  }
+
+  .loader-brand {
+    font-size: 1.75rem;
+    letter-spacing: 2px;
+  }
+
+  .loader-logo-img {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* ===== 8. TOUCH DEVICE INTERACTION ADAPTATION ===== */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
+  }
+
+  .project-overlay {
+    opacity: 1 !important;
+  }
+
+  .btn:hover,
+  .glass-panel:hover,
+  .skill-item:hover {
+    transform: none !important;
+  }
+}
