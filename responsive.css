@@ -747,23 +747,40 @@ html, body {
   }
 
   .loader-brand-title {
-    font-size: 1.6rem;
-    letter-spacing: 2px;
+    font-size: 1.65rem;
+    letter-spacing: 3px;
   }
 
-  .loader-logo-ring {
+  .galaxy-spiral {
+    width: 380px;
+    height: 380px;
+  }
+
+  .orbit-ring.ring-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .orbit-ring.ring-2 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .galaxy-logo-wrapper {
     width: 85px;
     height: 85px;
+    margin-bottom: 1.2rem;
   }
 
   .loader-logo-img {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
   }
 
   .loader-owner-badge {
     font-size: 0.75rem;
-    padding: 0.25rem 0.65rem;
+    padding: 0.3rem 0.75rem;
   }
 }
 
