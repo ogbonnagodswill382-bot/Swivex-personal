@@ -20,18 +20,39 @@
 </head>
 <body>
 
-  <!-- ===== PRELOADER LOADING SCREEN ===== -->
+  <!-- ===== TOP SCROLL PROGRESS INDICATOR ===== -->
+  <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+  <!-- ===== PRELOADER LOADING SCREEN ANIMATION ===== -->
   <div class="preloader" id="preloader">
+    <div class="loader-bg-particles">
+      <div class="loader-orb orb-1"></div>
+      <div class="loader-orb orb-2"></div>
+    </div>
+    
     <div class="loader-content">
-      <div class="loader-logo-wrap">
-        <img src="Images/swivex-logo.png" alt="Swivex Logo" class="loader-logo-img">
-        <div class="loader-brand">SWIVEX<span class="logo-dot">.</span></div>
+      <div class="loader-logo-ring">
+        <div class="ring-spinner"></div>
+        <div class="ring-pulse"></div>
+        <img src="Images/swivex-logo.png" alt="SWIVEX Logo" class="loader-logo-img">
       </div>
+
+      <div class="loader-brand-box">
+        <h1 class="loader-brand-title">SWIVEX<span class="logo-dot">.</span></h1>
+        <div class="loader-owner-badge">
+          <span class="sparkle-icon">✨</span>
+          <span class="owner-name">God'swill Ogbonna</span>
+          <span class="owner-sep">•</span>
+          <span class="owner-role">Portfolio</span>
+        </div>
+      </div>
+
       <div class="loader-bar">
         <div class="loader-bar-fill" id="loaderBarFill"></div>
       </div>
+
       <div class="loader-status">
-        <span class="loader-text" id="loaderText">Initializing Experience...</span>
+        <span class="loader-text" id="loaderText">Loading Digital Experience...</span>
         <span class="loader-percent" id="loaderPercent">0%</span>
       </div>
     </div>

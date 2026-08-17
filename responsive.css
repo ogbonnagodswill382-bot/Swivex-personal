@@ -746,14 +746,24 @@ html, body {
     padding: 0.85rem;
   }
 
-  .loader-brand {
-    font-size: 1.75rem;
+  .loader-brand-title {
+    font-size: 1.6rem;
     letter-spacing: 2px;
   }
 
+  .loader-logo-ring {
+    width: 85px;
+    height: 85px;
+  }
+
   .loader-logo-img {
-    width: 42px;
-    height: 42px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .loader-owner-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
   }
 }
 
