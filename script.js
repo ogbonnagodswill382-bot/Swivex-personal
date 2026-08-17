@@ -6,39 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ===== 0. PRELOADER & TOP SCROLL PROGRESS LOGIC ===== */
   const preloader = document.getElementById('preloader');
-  const loaderBarFill = document.getElementById('loaderBarFill');
-  const loaderPercent = document.getElementById('loaderPercent');
-  const loaderText = document.getElementById('loaderText');
   const scrollProgress = document.getElementById('scrollProgress');
 
-  if (preloader && loaderBarFill && loaderPercent) {
-    let progress = 0;
-    const statusMessages = [
-      "Initializing Swivex Logo...",
-      "Configuring Modern UI Framework...",
-      "Rendering Projects & Tech Stack...",
-      "Preparing Digital Portfolio...",
-      "Welcome to Swivex!"
-    ];
-
-    const interval = setInterval(() => {
-      progress += Math.floor(Math.random() * 12) + 6;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(interval);
-        if (loaderText) loaderText.textContent = statusMessages[4];
-        
-        setTimeout(() => {
-          preloader.classList.add('loaded');
-          document.body.classList.add('page-ready');
-        }, 500);
-      } else {
-        const msgIndex = Math.min(Math.floor((progress / 100) * statusMessages.length), 3);
-        if (loaderText) loaderText.textContent = statusMessages[msgIndex];
-      }
-      loaderBarFill.style.width = `${progress}%`;
-      loaderPercent.textContent = `${progress}%`;
-    }, 55);
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('loaded');
+      document.body.classList.add('page-ready');
+    }, 1100);
   }
 
   // Top Scroll Progress Bar Updates
